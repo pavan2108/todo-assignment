@@ -69,6 +69,19 @@ paths:
             description: Get List of todos
             tags:
                 - Todo
+            parameters:
+              - in: query
+                name: page
+                required: false
+                description: Page number
+                schema:
+                  type: integer
+              - in: query
+                name: limit
+                required: false
+                description: Limit
+                schema:
+                  type: integer
             responses:
                 '200':
                     description: Todo Fetched Successfully
