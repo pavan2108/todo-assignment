@@ -111,6 +111,167 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/error'
+  /api/v1/todo/get/{_id}:
+        get:
+            summary: Get Todo
+            description: Get todos
+            tags:
+                - Todo
+            parameters:
+              - in: path
+                name: _id
+                required: true
+                description: Todo id
+                schema:
+                  type: string
+            responses:
+                '200':
+                    description: Todo Fetched Successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                  status:
+                                    type: string
+                                    description: "Success or Failed"
+                                    example: "success"
+                                  message:
+                                    type: string
+                                    description: "Message"
+                                    example: "Todo fetched successfully"
+                                  tag:
+                                    type: string
+                                    description: "Tag"
+                                    example: "Todo fetched"
+                                  data:
+                                    $ref: '#/components/schemas/TodoCreated'
+                '400':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                '500':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                '404':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+
+  /api/v1/todo/delete/{_id}:
+      delete:
+          summary: Delete Todo
+          description: Delete todos
+          tags:
+              - Todo
+          parameters:
+            - in: path
+              name: _id
+              required: true
+              description: Todo id
+              schema:
+                type: string
+          responses:
+              '200':
+                  description: Todo Deleted Successfully
+                  content:
+                      application/json:
+                          schema:
+                              type: object
+                              properties:
+                                status:
+                                  type: string
+                                  description: "Success or Failed"
+                                  example: "success"
+                                message:
+                                  type: string
+                                  description: "Message"
+                                  example: "Todo fetched successfully"
+                                tag:
+                                  type: string
+                                  description: "Tag"
+                                  example: "Todo fetched"
+                                data:
+                                  $ref: '#/components/schemas/TodoCreated'
+              '400':
+                  description: Error Processing the request
+                  content:
+                      application/json:
+                          schema:
+                              $ref: '#/components/schemas/error'
+              '500':
+                  description: Error Processing the request
+                  content:
+                      application/json:
+                          schema:
+                              $ref: '#/components/schemas/error'
+              '404':
+                  description: Error Processing the request
+                  content:
+                      application/json:
+                          schema:
+                              $ref: '#/components/schemas/error'
+
+  /api/v1/todo/update:
+      put:
+          summary: Update Todo
+          description: Update the todo based on the id
+          tags:
+              - Todo
+          requestBody:
+              description: Update Todo
+              required: true
+              content:
+                application/json:
+                  schema:
+                      $ref: '#/components/schemas/TodoCreated'
+          responses:
+              '200':
+                  description: Todo Updated Successfully
+                  content:
+                      application/json:
+                          schema:
+                              type: object
+                              properties:
+                                status:
+                                  type: string
+                                  description: "Success or Failed"
+                                  example: "success"
+                                message:
+                                  type: string
+                                  description: "Message"
+                                  example: "Todo fetched successfully"
+                                tag:
+                                  type: string
+                                  description: "Tag"
+                                  example: "Todo fetched"
+                                data:
+                                  $ref: '#/components/schemas/TodoCreated'
+              '400':
+                  description: Error Processing the request
+                  content:
+                      application/json:
+                          schema:
+                              $ref: '#/components/schemas/error'
+              '500':
+                  description: Error Processing the request
+                  content:
+                      application/json:
+                          schema:
+                              $ref: '#/components/schemas/error'
+              '404':
+                  description: Error Processing the request
+                  content:
+                      application/json:
+                          schema:
+                              $ref: '#/components/schemas/error'
 
       
 components:
