@@ -16,7 +16,7 @@ const PORT = process.env.PORT
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('<a href="/api-docs">Todo App Documetation</a>');
 });
 
 app.use('/api/v1/todo', todoRouter);
@@ -30,4 +30,4 @@ app.use(
 )
 
 connect();
-app.listen(PORT, () => console.log(`Now browse to localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Now browse to http://localhost:${PORT}`));
