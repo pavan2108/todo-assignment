@@ -1,0 +1,171 @@
+openapi: 3.0.3
+info:
+  title: "Todo API"
+  description: "Todo Api Documentation"
+  version: "1.0.0"
+
+servers:
+  - url: "http://localhost:5000"
+    description: "Local server"
+
+paths:
+  /api/v1/todo/create:
+        post:
+            summary: Create Todo
+            description: Create Todo
+            tags:
+                - Todo
+            requestBody:
+                description: Create Todo
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Todo'
+            responses:
+                '200':
+                    description: Todo Created Successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                  status:
+                                    type: string
+                                    description: "Success or Failed"
+                                    example: "success"
+                                  message:
+                                    type: string
+                                    description: "Message"
+                                    example: "Todo created successfully"
+                                  tag:
+                                    type: string
+                                    description: "Tag"
+                                    example: "Todo created"
+                                  data:
+                                    $ref: '#/components/schemas/TodoCreated'
+                '400':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                '500':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                '404':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+  
+  /api/v1/todo/get-all:
+        get:
+            summary: Get All Todo's
+            description: Get List of todos
+            tags:
+                - Todo
+            responses:
+                '200':
+                    description: Todo Fetched Successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                  status:
+                                    type: string
+                                    description: "Success or Failed"
+                                    example: "success"
+                                  message:
+                                    type: string
+                                    description: "Message"
+                                    example: "Todo fetched successfully"
+                                  tag:
+                                    type: string
+                                    description: "Tag"
+                                    example: "Todo fetched"
+                                  data:
+                                    type: array
+                                    items:
+                                      $ref: '#/components/schemas/TodoCreated'
+                '400':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                '500':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                '404':
+                    description: Error Processing the request
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+
+      
+components:
+  schemas:
+    Todo:
+      type: object
+      properties:
+        title:
+          type: string
+          description: "Todo title"
+        description:
+          type: string
+          description: "Todo description"
+        status:
+          type: string
+          description: "Todo status as active or inactive"
+      required:
+        - title
+
+    TodoCreated:
+          type: object
+          properties:
+            _id:
+              type: string
+              description: "Todo id"
+              example: "5f9b3b3b3b3b3b3b3b3b3b3b"
+            title:
+              type: string
+              description: "Todo title"
+              example: "Todo title"
+            description:
+              type: string
+              description: "Todo description"
+              example: "Todo description"
+            status:
+              type: string
+              description: "Todo status as active or inactive"
+              example: "active"
+    
+    error:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Success or Failed"
+          example: "failed"
+        message:
+          type: string
+          description: "Message"
+          example: "Todo creation failed"
+        error:
+          type: string
+          description: "Error"
+          example: "Error message"
+        tag:
+          type: string
+          description: "Tag"
+          example: "Error tag"
